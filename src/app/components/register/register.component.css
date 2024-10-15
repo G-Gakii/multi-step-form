@@ -1,0 +1,27 @@
+.register_container {
+  min-width: 300px;
+}
+
+.form_content {
+  top: 20vh;
+  left: 4%;
+  right: 4%;
+}
+.btn {
+  bottom: -140px;
+}
+@media screen and (min-width: 480px) {
+  .register_container {
+    min-width: 450px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .btn {
+    bottom: 0;
+  }
+}
+
+.errorBorder {
+  border: 1px solid red;
+}

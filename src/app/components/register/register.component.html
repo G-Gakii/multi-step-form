@@ -1,0 +1,101 @@
+<div
+  class="register_container relative min-h-screen md:flex bg-White md:max-w-3xl md:min-h-96 md:p-4 rounded-md"
+>
+  <app-navbar></app-navbar>
+
+  <form class="" [formGroup]="personalInfo">
+    <div
+      class="form_content w-11/12 mx-auto p-8 text-Marineblue bg-White rounded-lg absolute md:static"
+    >
+      <h1 class="font-bold text-3xl">Personal info</h1>
+      <p class="text-Coolgray text-lg py-2">
+        Please provide your name, email address, and phone number.
+      </p>
+      <div class="name capitalize py-1">
+        <div class="flex justify-between items-center">
+          <label for="name">Name</label>
+          @if((personalInfo.controls['name'].invalid)&&
+          (personalInfo.controls['name'].touched)){
+          <p class="text-Strawberryred text-xs">This field is required</p>
+          }
+        </div>
+
+        <input
+          [ngClass]="{
+            errorBorder:
+              personalInfo.controls['name'].invalid &&
+              personalInfo.controls['name'].touched
+          }"
+          class="border border-Lightgray rounded-md w-full p-3 text-lg hover:border-Purplishblue focus:outline focus:outline-Purplishblue"
+          type="text"
+          name="name"
+          id="name"
+          placeholder="e.g.Stephen King"
+          formControlName="name"
+        />
+      </div>
+      <div class="email capitalize py-1">
+        <div class="flex justify-between items-center">
+          <label for="email">Email address</label>
+          @if((personalInfo.controls['email'].errors?.['required'])&&
+          (personalInfo.controls['email'].touched)){
+          <p class="text-Strawberryred text-xs">This field is required</p>
+          }@else if (personalInfo.controls['email'].errors?.['email']) {
+          <p class="text-Strawberryred text-xs">Enter a valid email</p>
+          }
+        </div>
+
+        <input
+          [ngClass]="{
+            errorBorder:
+              personalInfo.controls['email'].invalid &&
+              personalInfo.controls['email'].touched
+          }"
+          class="border border-Lightgray rounded-md w-full p-3 text-lg hover:border-Purplishblue focus:outline focus:outline-Purplishblue"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="e.g.stephenking@lorem.com"
+          formControlName="email"
+        />
+      </div>
+      <div class="phoneNumber capitalize py-1">
+        <div class="flex justify-between items-center">
+          <label for="phoneNumber">phone Number</label>
+          @if((personalInfo.controls['phoneNumber'].errors?.['required'])&&
+          (personalInfo.controls['phoneNumber'].touched)){
+          <p class="text-Strawberryred text-xs">This field is required</p>
+          }
+          <div
+            *ngIf="personalInfo.controls['phoneNumber'].errors?.['invalidPhoneNumber'] && personalInfo.controls['phoneNumber'].touched"
+          >
+            <p class="text-Strawberryred text-xs">Invalid phone number</p>
+          </div>
+        </div>
+
+        <input
+          [ngClass]="{
+            errorBorder:
+              personalInfo.controls['phoneNumber'].invalid &&
+              personalInfo.controls['phoneNumber'].touched
+          }"
+          class="border border-Lightgray rounded-md w-full p-3 text-lg hover:border-Purplishblue focus:outline focus:outline-Purplishblue"
+          type="tel"
+          name="phoneNumber"
+          id="phoneNumber"
+          placeholder="e.g. +1 234 567 890"
+          formControlName="phoneNumber"
+        />
+      </div>
+    </div>
+    <div class="btn absolute bg-white p-6 md:pr-12 w-full text-end md:static">
+      <button
+        type="submit"
+        (click)="submit()"
+        class="capitalize bg-Marineblue text-white p-3 rounded-md"
+      >
+        next step
+      </button>
+    </div>
+  </form>
+</div>
