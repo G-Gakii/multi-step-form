@@ -1,0 +1,69 @@
+<div
+  class="main_container relative min-h-screen lg:flex bg-White lg:max-w-3xl lg:min-h-96 lg:p-4 rounded-md"
+>
+  <app-navbar></app-navbar>
+
+  <form class="plan_container lg:w-2/3">
+    <div
+      class="form_content w-11/12 mx-auto p-8 text-Marineblue bg-White rounded-lg absolute lg:static"
+    >
+      <h1 class="font-bold text-3xl">Pick add-ons</h1>
+      <p class="text-Coolgray text-lg py-2">
+        Add-ons help enhance your gaming experience.
+      </p>
+      <div class="lg:flex justify-between">
+        <div>
+          @for (item of data; track $index) {
+          <div
+            class="about mb-4 rounded-lg p-3 flex items-center justify-between border border-Coolgray"
+            (click)="selectedAddOn($index)"
+          >
+            <div class="part1 flex items-center">
+              <div
+                class="w-6 h-6 rounded-md border mr-4 flex justify-center items-center"
+                [ngClass]="{ box: item.isSelected === true }"
+              >
+                <img
+                  [ngSrc]="'assets/images/icon-checkmark.svg'"
+                  width="12"
+                  height="9"
+                  alt=""
+                />
+              </div>
+              <div class="des">
+                <h2 class="text-Marineblue text-xl font-bold">
+                  {{ item.name }}
+                </h2>
+                <p class="text-Coolgray">{{ item.des }}</p>
+              </div>
+            </div>
+
+            <div class="price">
+              <p class="text-Purplishblue">
+                @if(plan==='monthly'){ +{{
+                  item.price.monthly | currency : "USD"
+                }}/mo }@else { +{{ item.price.yearly | currency : "USD" }}/yr }
+              </p>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+
+      <div
+        class="btn absolute bg-white p-2 w-full flex justify-between items-center lg:static lg:mt-10"
+      >
+        <button class="text-Coolgray" type="button" routerLink="/plan">
+          Go Back
+        </button>
+        <button
+          type="button"
+          routerLink="/complete"
+          class="capitalize bg-Marineblue text-white p-3 rounded-md"
+        >
+          next step
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

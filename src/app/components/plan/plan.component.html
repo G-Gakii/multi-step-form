@@ -1,0 +1,75 @@
+<div
+  class="main_container relative min-h-screen lg:flex bg-White lg:max-w-3xl lg:min-h-96 lg:p-4 rounded-md"
+>
+  <app-navbar></app-navbar>
+
+  <form class="plan_container lg:w-2/3">
+    <div
+      class="form_content w-11/12 mx-auto p-8 text-Marineblue bg-White rounded-lg absolute lg:static"
+    >
+      <h1 class="font-bold text-3xl">Select your plan</h1>
+      <p class="text-Coolgray text-lg py-2">
+        You have the option of monthly or yearly billing.
+      </p>
+      <div class="lg:flex justify-between">
+        @for (item of plans; track $index) {
+        <div
+          class="border border-Lightgray my-4 rounded-lg p-4 flex md:flex-col lg:min-w-32 md:mr-2"
+          (click)="choosePlan($index)"
+          [ngClass]="{ typeBorder: item.isPlan === true }"
+        >
+          <img [ngSrc]="item.img" width="40" height="40" alt="" />
+          <div class="about ml-4 lg:ml-0">
+            <h2 class="text-Marineblue text-xl font-bold">{{ item.name }}</h2>
+            <p class="text-Coolgray">
+              @if(plantype==="monthly"){
+              {{ item.price.monthly | currency : "USD" }} /mon }@else {
+              {{ item.price.yearly | currency : "USD" }}/yr }
+            </p>
+            @if(plantype==="yearly"){
+            <p>2 month free</p>
+            }
+          </div>
+        </div>
+        }
+      </div>
+
+      <div
+        class="flex justify-between items-center bg-Magnolia p-4 rounded-lg mt-4"
+      >
+        <p
+          [ngClass]="plantype === 'monthly' ? 'month' : 'year'"
+          class="myMonth text-Coolgray font-bold"
+        >
+          Monthly
+        </p>
+        <div
+          [ngClass]="plantype === 'yearly' ? 'slideYear' : 'slidemonth'"
+          (click)="changePlan()"
+          class="outer_circle flex justify-start items-center p-1"
+        >
+          <div class="inner_circle"></div>
+        </div>
+        <p
+          class="myyear text-Coolgray font-bold"
+          [ngClass]="plantype === 'yearly' ? 'year' : 'month'"
+        >
+          Yearly
+        </p>
+      </div>
+
+      <div
+        class="btn absolute bg-white p-2 w-full flex justify-between items-center lg:static lg:mt-10"
+      >
+        <button class="text-Coolgray" routerLink="/">Go Back</button>
+        <button
+          type="button"
+          class="capitalize bg-Marineblue text-white p-3 rounded-md"
+          routerLink="/addons"
+        >
+          next step
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

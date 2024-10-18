@@ -1,3 +1,4 @@
+@import "../../../styles.css";
 .main_container {
   min-width: 300px;
 }
@@ -9,6 +10,7 @@
 }
 .btn {
   bottom: -140px;
+  right: 0;
   left: 0;
 }
 @media screen and (min-width: 480px) {
@@ -28,4 +30,19 @@
 
 .errorBorder {
   border: 1px solid red;
+}
+.outer_circle {
+  width: 4rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: var(--Marineblue);
+}
+.inner_circle {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  background-color: white;
+}
+.box {
+  background-color: var(--Purplishblue);
 }

@@ -1,0 +1,71 @@
+<div
+  class="main_container relative min-h-screen lg:flex bg-White lg:max-w-3xl lg:min-h-96 lg:p-4 rounded-md"
+>
+  <app-navbar></app-navbar>
+
+  <form class="plan_container lg:w-2/3">
+    <div
+      class="form_content w-11/12 mx-auto p-8 text-Marineblue bg-White rounded-lg absolute lg:static"
+    >
+      <h1 class="font-bold text-3xl">Finishing up</h1>
+      <p class="text-Coolgray text-lg py-2">
+        Double-check everything looks OK before confirming.
+      </p>
+
+      <div>
+        <ul class="bg-Magnolia p-4">
+          <li class="flex justify-between items-center">
+            <div class="part">
+              <h2 class="text-Marineblue font-bold text-2xl">
+                {{ plan.name }} ( @if(plantype==="monthly"){monthly} @else
+                {yearly} )
+              </h2>
+              <button
+                class="capitalize text-Coolgray underline"
+                routerLink="/plan"
+              >
+                change
+              </button>
+            </div>
+            <p class="text-Marineblue font-bold text-lg">
+              @if(plantype==="monthly"){
+              {{ plan.price.monthly | currency : "USD" }}
+              }@else {
+              {{ plan.price.yearly | currency : "USD" }}
+              }
+            </p>
+          </li>
+          @for (item of selectedAndon; track $index) {
+          <li class="flex justify-between">
+            <p>{{ item.name }}</p>
+            <p>
+              @if(plantype==="monthly"){
+              {{ item.price.monthly | currency : "USD" }}
+              }@else {
+              {{ item.price.yearly | currency : "USD" }}
+              }
+            </p>
+          </li>
+          }
+        </ul>
+        <div>
+          total ( @if(plantype==="monthly"){per month} @else {per year})
+        </div>
+      </div>
+
+      <div
+        class="btn absolute bg-white p-2 w-full flex justify-between items-center lg:static lg:mt-10"
+      >
+        <button class="text-Coolgray" type="button" routerLink="/plan">
+          Go Back
+        </button>
+        <button
+          type="button"
+          class="capitalize bg-Purplishblue text-white p-3 rounded-md"
+        >
+          confirm
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

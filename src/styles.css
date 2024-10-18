@@ -10,6 +10,9 @@
   --Marineblue: hsl(213, 96%, 18%);
   --Pastelblue: hsl(228, 100%, 84%);
   --magnolia: hsl(217, 100%, 97%);
+  --coolgray: hsl(231, 11%, 63%);
+  --lightgray: hsl(229, 24%, 87%);
+  --Purplishblue: hsl(243, 100%, 62%);
 }
 * {
   margin: 0;
